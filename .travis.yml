@@ -109,3 +109,7 @@ jobs:
   #   script:
   #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   #   - docker push mmore500/double-duty-canvas
+
+env:
+  global:
+    secure: A5qgEg61jnoog1pTm1McVVjhirmQcVpehDEBQrrzt3HBQy881fQe3fuEXb/3NiT4U0FUj2EmjRGLLzmyhIQZ5G76Mvm1VsrgJjH2bgO01Z+seb859Bp9+l7IinLW3gbgATBVwW5frnx8zuOZBfVkXqhOnnGkvPoZ/4Q251sZfo8qfh5lsPszcp6kmSeLecxKjVh/zdzEjZYDJhov2dl+X5KYYIa1lY2+670jXadk4c23mwFjujRRTaCNPOjPen2BtOKZprjGjMJ4lUHeLWxJpWxOg3sDdSGOr1KIhQZA2VLUsGqshfr3kcEqyqvttjx6cKJZOpmVe0teWUYz66RU7zbsgvGJQuvQlHV2IT/edFByLgCsh+m6nrv8qYPb8mbccnEo9m3gCbUYErSBsha5oGGwOQeW2HwA/mA81zDeZnwAn38Fs4MdiG36nCZke21WMsdSpIua/X80OtkzcX8dtuSVg+z5YsXaoht5krRoL+d8/wvn3GOAgbZFxeBo5H0481iwJNwc/KgnJImrL3zsrgXK1adHTjVa2VOmxcOFZzKnSOnav+o2dZCidaRCsaV0TxDfanRqW2ateBcFUIL8mrL8fVclPUG0qTfnO2DfJOmfYFKBcYtv5rx0GEegVq1+XWvX4EAwy1baFwlpM8taBh7aap72ixLkqFJJjALcWqQ=
