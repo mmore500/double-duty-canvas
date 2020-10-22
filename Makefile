@@ -22,6 +22,7 @@ CFLAGS_web_debug := $(CFLAGS_all) $(OFLAGS_web_debug) $(OFLAGS_web_all)
 default: $(PROJECT)
 native: $(PROJECT)
 web: $(PROJECT).js
+node: cli-driver.js
 all: $(PROJECT) $(PROJECT).js
 
 debug:	CFLAGS_nat := $(CFLAGS_nat_debug)
@@ -38,6 +39,9 @@ $(PROJECT):	source/native.cpp include/
 
 $(PROJECT).js: source/web.cpp include/
 	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web.cpp -o web/$(PROJECT).js
+
+cli-driver.js: source/node.cpp include/
+	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/node.cpp -o cli-driver.js
 
 docs:
 	cd docs && make html
@@ -60,13 +64,14 @@ doto-badge.json:
 badges: documentation-coverage-badge.json version-badge.json doto-badge.json
 
 clean:
-	rm -f $(PROJECT) web/$(PROJECT).js web/*.js.map web/*.js.map *~ source/*.o web/*.wasm web/*.wast
+	rm -f $(PROJECT) web/$(PROJECT).js web/*.js.map web/*.js.map *~ source/*.o web/*.wasm web/*.wast data.png cli-driver.js cli-driver.wasm web/*.wasm.map
 
-test: debug debug-web
+test: debug debug-web node
 	./double-duty-canvas | grep -q 'Hello, world!' && echo 'matched!' || exit 1
 	npm install
 	echo "const puppeteer = require('puppeteer'); var express = require('express'); var app = express(); app.use(express.static('web')); app.listen(3000); express.static.mime.types['wasm'] = 'application/wasm'; function sleep(millis) { return new Promise(resolve => setTimeout(resolve, millis)); } async function run() { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.goto('http://localhost:3000/double-duty-canvas.html'); await sleep(1000); const html = await page.content(); console.log(html); browser.close(); process.exit(0); } run();" | node | tr -d '\n' | grep -q "Hello, browser!" && echo "matched!" || exit 1
 	echo "const puppeteer = require('puppeteer'); var express = require('express'); var app = express(); app.use(express.static('web')); app.listen(3000); express.static.mime.types['wasm'] = 'application/wasm'; function sleep(millis) { return new Promise(resolve => setTimeout(resolve, millis)); } async function run() { const browser = await puppeteer.launch(); const page = await browser.newPage(); page.on('console', msg => console.log(msg.text())); await page.goto('http://localhost:3000/double-duty-canvas.html'); await sleep(1000); await page.content(); browser.close(); process.exit(0); } run();" | node | grep -q "Hello, console!" && echo "matched!"|| exit 1
+	node cli-driver.js | grep -q "canvas" && test -f "data.png"
 
 tests:
 	cd tests && make

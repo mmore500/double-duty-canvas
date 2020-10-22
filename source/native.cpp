@@ -7,8 +7,6 @@
 #include "base/vector.h"
 #include "config/command_line.h"
 
-#include "double-duty-canvas/example.hpp"
-
 // This is the main function for the NATIVE version of Double Duty Canvas.
 
 int main(int argc, char* argv[])
@@ -17,5 +15,5 @@ int main(int argc, char* argv[])
 
   std::cout << "Hello, world!" << std::endl;
 
-  return example();
+  return 0;
 }

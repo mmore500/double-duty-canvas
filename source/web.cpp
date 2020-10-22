@@ -6,15 +6,22 @@
 
 #include "web/web.h"
 
-#include "double-duty-canvas/example.hpp"
+#include "double-duty-canvas/draw.hpp"
 
 namespace UI = emp::web;
 
 UI::Document doc("emp_base");
 
-int main()
-{
+UI::Canvas canvas{500, 500, "my_canvas"};
+
+int main() {
+
+  ddc::draw( canvas );
+
   doc << "<h1>Hello, browser!</h1>";
+  doc << canvas;
+
   std::cout << "Hello, console!" << std::endl;
-  return example();
+  return 0;
+
 }

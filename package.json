@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "canvas": "^2.6.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0"
   },
   "devDependencies": {
     "express": "4.16.3",

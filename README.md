@@ -16,13 +16,14 @@ Check out the live in-browser web app at [https://mmore500.github.io/double-duty
 
 
 -   Free software: MIT license
--   Documentation: <https://double-duty-canvas.readthedocs.io>. 
+-   Documentation: <https://double-duty-canvas.readthedocs.io>.
 
-## Features
+## Give it a Whirl
 
--   TODO
-
-![cookie monster example](docs/assets/cookie.gif)
+```bash
+make node
+node cli-driver.js
+```
 
 ## Credits
 

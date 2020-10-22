@@ -2,9 +2,6 @@
 
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "double-duty-canvas/example.hpp"
-
-TEST_CASE("Test example")
-{
-  REQUIRE( example() );
+TEST_CASE("Test example") {
+  REQUIRE( true );
 }
